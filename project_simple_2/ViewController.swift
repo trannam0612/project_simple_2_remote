@@ -55,6 +55,8 @@ extension ViewController:  UITableViewDelegate{
         if let vc = self.storyboard?.instantiateViewController(withIdentifier: "detailViewController")as? DetailViewController{
             
             vc.titleImage = viewModel.items[indexPath.row].title
+            
+            
             vc.descriptionImage = viewModel.items[indexPath.row].description ?? ""
             
             vc.imageUrl = viewModel.items[indexPath.row].image
