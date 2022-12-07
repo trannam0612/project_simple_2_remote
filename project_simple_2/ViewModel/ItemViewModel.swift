@@ -32,9 +32,8 @@ class ItemViewModel {
             }
             
             if(itemData.isEmpty){
-                for item in [1,2] {
-                    mockItem()
-                }
+                
+                mockItem()
                 
             }else{
                 for item in itemData {
@@ -55,12 +54,16 @@ class ItemViewModel {
     
     func mockItem()  {
         print("call mockItem")
-        let newItem = ItemData(context: context)
-        newItem.id = 1
-        newItem.title = "Submit reimbursement report"
-        newItem.isLike = false
-        newItem.urlImage = "https://images.pexels.com/photos/6499190/pexels-photo-6499190.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-        newItem.descriptionItem = "Don't forget about taxi receipts"
+        let listItem = Item.sampleData
+        for item in listItem {
+            let newItem = ItemData(context: context)
+            newItem.id = Int16(item.id ?? 0)
+            newItem.title = item.title
+            newItem.isLike = item.isLike ?? false
+            newItem.urlImage = item.image
+            newItem.descriptionItem = item.description
+        }
+        
         
         do {
             try context.save()

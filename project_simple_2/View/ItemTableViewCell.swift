@@ -26,7 +26,6 @@ class ItemTableViewCell: UITableViewCell {
     
 
     @IBAction func likeButtonPress(_ sender: Any) {
-        print("itemCurrent: \(itemCurrent.isLike)")
         if isActice{
             isActice = false
             likeButton.setImage(UIImage(named:"ic_unheart"), for: .normal)
@@ -34,14 +33,12 @@ class ItemTableViewCell: UITableViewCell {
             isActice = true
             likeButton.setImage(UIImage(named:"heart"), for: .normal)
         }
-        print("isActice changed: \(isActice)")
         viewModel.likeFunc(item: itemCurrent, isLike: isActice)
     }
     
     func configureCell(item : ItemData)  {
         itemCurrent = item
         isActice = item.isLike
-        print("isActice: \(isActice)")
         if isActice{
             likeButton.setImage(UIImage(named:"heart"), for: .normal)
         }else{
