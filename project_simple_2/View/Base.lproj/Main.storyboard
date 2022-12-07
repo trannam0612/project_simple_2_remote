@@ -34,25 +34,44 @@
                                                         <constraint firstAttribute="width" constant="240" id="wq1-sO-Olp"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gm5-x8-RWu">
-                                                    <rect key="frame" x="260" y="74" width="124" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Gc8-GO-4Te">
+                                                    <rect key="frame" x="260" y="11" width="124" height="147"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gm5-x8-RWu">
+                                                            <rect key="frame" x="41.5" y="0.0" width="41.5" height="115"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2I9-P5-G9k">
+                                                            <rect key="frame" x="46" y="115" width="32" height="32"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="32" id="63O-mj-lV3"/>
+                                                                <constraint firstAttribute="height" constant="32" id="t6d-xb-Yk6"/>
+                                                            </constraints>
+                                                            <state key="normal" title="Button"/>
+                                                            <buttonConfiguration key="configuration" style="plain" image="heart"/>
+                                                            <connections>
+                                                                <action selector="likeButtonPress:" destination="NDS-KW-DAz" eventType="touchUpInside" id="mvi-ik-nym"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                </stackView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Gc8-GO-4Te" secondAttribute="trailing" constant="10" id="8cK-S8-LO0"/>
                                                 <constraint firstAttribute="bottom" secondItem="yAj-qf-tmD" secondAttribute="bottom" constant="10" id="9L0-4n-I3q"/>
                                                 <constraint firstItem="yAj-qf-tmD" firstAttribute="leading" secondItem="q3m-xU-KBT" secondAttribute="leading" constant="10" id="AHy-4n-en2"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="gm5-x8-RWu" secondAttribute="trailing" constant="10" id="Eb2-Aj-HrD"/>
                                                 <constraint firstItem="yAj-qf-tmD" firstAttribute="top" secondItem="q3m-xU-KBT" secondAttribute="top" constant="10" id="Kd0-93-eSS"/>
-                                                <constraint firstItem="gm5-x8-RWu" firstAttribute="leading" secondItem="yAj-qf-tmD" secondAttribute="trailing" constant="10" id="NYN-bZ-YJi"/>
-                                                <constraint firstItem="gm5-x8-RWu" firstAttribute="centerY" secondItem="q3m-xU-KBT" secondAttribute="centerY" id="yoP-wJ-nR2"/>
+                                                <constraint firstItem="Gc8-GO-4Te" firstAttribute="top" secondItem="q3m-xU-KBT" secondAttribute="topMargin" id="OM9-Pe-Txx"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Gc8-GO-4Te" secondAttribute="bottom" id="lah-KO-4qU"/>
+                                                <constraint firstItem="Gc8-GO-4Te" firstAttribute="leading" secondItem="yAj-qf-tmD" secondAttribute="trailing" constant="10" id="wLr-Yy-lH5"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="itemImageView" destination="yAj-qf-tmD" id="lwu-ZE-Xcq"/>
                                             <outlet property="lableView" destination="gm5-x8-RWu" id="v8i-zh-pX3"/>
+                                            <outlet property="likeButton" destination="2I9-P5-G9k" id="rRH-9z-Nhm"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -152,6 +171,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="heart" width="21.5" height="21.5"/>
         <systemColor name="opaqueSeparatorColor">
             <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

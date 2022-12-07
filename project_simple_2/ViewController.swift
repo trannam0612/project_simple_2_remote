@@ -19,12 +19,7 @@ class ViewController: UIViewController {
         
         tableView.dataSource = self
         tableView.delegate = self
-        viewModel.loadItem()
-        
-        
-        
-        
-        
+        viewModel.getAllItem()
     }
     
     
@@ -33,14 +28,13 @@ class ViewController: UIViewController {
 
 extension ViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.items.count
+        return viewModel.itemData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ItemTableViewCell", for: indexPath) as? ItemTableViewCell else { return UITableViewCell() }
-        let item = viewModel.items[indexPath.row]
+        let item = viewModel.itemData[indexPath.row]
         cell.configureCell(item: item)
-        
         return cell
     }
     
@@ -54,12 +48,12 @@ extension ViewController:  UITableViewDelegate{
         
         if let vc = self.storyboard?.instantiateViewController(withIdentifier: "detailViewController")as? DetailViewController{
             
-            vc.titleImage = viewModel.items[indexPath.row].title
+            vc.titleImage = (viewModel.itemData[indexPath.row].value(forKey: "title") as? String) ?? ""
             
             
-            vc.descriptionImage = viewModel.items[indexPath.row].description ?? ""
+            vc.descriptionImage = (viewModel.itemData[indexPath.row].value(forKey: "descriptionItem") as? String) ?? ""
             
-            vc.imageUrl = viewModel.items[indexPath.row].image
+            vc.imageUrl = (viewModel.itemData[indexPath.row].value(forKey: "urlImage") as? String) ?? ""
             
             self.navigationController?.pushViewController(vc, animated: true)
         }

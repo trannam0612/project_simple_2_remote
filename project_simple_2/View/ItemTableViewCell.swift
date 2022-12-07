@@ -6,26 +6,52 @@
 //
 
 import UIKit
+import CoreData
 
 class ItemTableViewCell: UITableViewCell {
+    var viewModel = ItemViewModel()
+    
+    var itemCurrent = ItemData();
+    var isActice:Bool = false
     
     
     @IBOutlet weak var itemImageView: UIImageView!
     
+    @IBOutlet weak var likeButton: UIButton!
+    
     @IBOutlet weak var lableView: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
     
-    func configureCell(item : Item)  {
-        
-        if let url = URL(string: item.image){
-            itemImageView.loadImage123(url: url)
-            
-            
+
+    @IBAction func likeButtonPress(_ sender: Any) {
+        print("itemCurrent: \(itemCurrent.isLike)")
+        if isActice{
+            isActice = false
+            likeButton.setImage(UIImage(named:"ic_unheart"), for: .normal)
+        }else{
+            isActice = true
+            likeButton.setImage(UIImage(named:"heart"), for: .normal)
         }
-        lableView.text = item.title
+        print("isActice changed: \(isActice)")
+        viewModel.likeFunc(item: itemCurrent, isLike: isActice)
+    }
+    
+    func configureCell(item : ItemData)  {
+        itemCurrent = item
+        isActice = item.isLike
+        print("isActice: \(isActice)")
+        if isActice{
+            likeButton.setImage(UIImage(named:"heart"), for: .normal)
+        }else{
+            likeButton.setImage(UIImage(named:"ic_unheart"), for: .normal)
+        }
+        
+        if let url = URL(string: (item.value(forKey: "urlImage") as? String) ?? ""){
+            itemImageView.loadImage123(url: url)
+        }
+        lableView.text = (item.value(forKey: "title") as? String) ?? ""
         
     }
     
